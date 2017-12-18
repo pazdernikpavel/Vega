@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Vega.Persistence;
+using AutoMapper;
 
 namespace Vega
 {
@@ -26,7 +27,11 @@ namespace Vega
         {
             services.AddMvc();
 
-            services.AddDbContext<VegaDbContext>(options => options.UseSqlServer("Default"));
+            //services.AddDbContext<VegaDbContext>(option => option.UseSqlServer("Default")); -- not working for some reason?
+            services.AddDbContext<VegaDbContext>(option => option.UseSqlServer(connectionString: Configuration.GetConnectionString("Default")));
+
+            services.AddAutoMapper();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -29,12 +29,12 @@ namespace Vega.Migrations
             migrationBuilder.Sql("INSERT INTO Features (Name) VALUES ('Automat')");
             migrationBuilder.Sql("INSERT INTO Features (Name) VALUES ('ABS')");
             migrationBuilder.Sql("INSERT INTO Features (Name) VALUES ('ESP')");
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql("DELETE FROM Makes WHERE Name IN ('Make1', 'Make2', 'Make3')");
+            migrationBuilder.Sql("DELETE FROM Features WHERE Name IN ('Air condition', 'Manual', 'Automat', 'ABS', 'ESP')");
         }
     }
 }

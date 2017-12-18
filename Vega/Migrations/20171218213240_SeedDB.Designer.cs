@@ -11,8 +11,8 @@ using Vega.Persistence;
 namespace Vega.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    [Migration("20171218191602_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20171218213240_SeedDB")]
+    partial class SeedDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,21 @@ namespace Vega.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("MakeId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Makes");
+                });
+
+            modelBuilder.Entity("Vega.Models.Model", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("MakeId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -50,14 +64,15 @@ namespace Vega.Migrations
 
                     b.HasIndex("MakeId");
 
-                    b.ToTable("Makes");
+                    b.ToTable("Models");
                 });
 
-            modelBuilder.Entity("Vega.Models.Make", b =>
+            modelBuilder.Entity("Vega.Models.Model", b =>
                 {
-                    b.HasOne("Vega.Models.Make")
-                        .WithMany("Makes")
-                        .HasForeignKey("MakeId");
+                    b.HasOne("Vega.Models.Make", "Make")
+                        .WithMany("Models")
+                        .HasForeignKey("MakeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

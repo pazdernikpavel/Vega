@@ -14,11 +14,11 @@ namespace Vega.Models
         [StringLength(255)]
         public string Name { get; set; }
 
-        public ICollection<Make> Makes { get; set; }
+        public ICollection<Model> Models { get; set; }
 
         public Make()
         {
-            Makes = new Collection<Make>();
+            Models = new Collection<Model>();
         }     
     }
 }
