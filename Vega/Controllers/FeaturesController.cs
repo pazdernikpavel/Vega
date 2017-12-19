@@ -23,6 +23,7 @@ namespace Vega.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("/api/features")]
         public async Task<IEnumerable<FeatureResource>> GetFeatures()
         {
             var features = await _context.Features.ToListAsync();
