@@ -2,3 +2,7 @@ select {
     width: 350px;
 }
 
+input[type='text'] {
+    width: 350px;
+}
+
