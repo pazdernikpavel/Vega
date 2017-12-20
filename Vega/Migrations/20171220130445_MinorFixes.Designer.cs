@@ -11,9 +11,10 @@ using Vega.Persistence;
 namespace Vega.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    partial class VegaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171220130445_MinorFixes")]
+    partial class MinorFixes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,6 +72,17 @@ namespace Vega.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("ContactName")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
                     b.Property<bool>("IsRegistered");
 
                     b.Property<DateTime>("LastUpdate");
@@ -111,29 +123,6 @@ namespace Vega.Migrations
                         .WithMany()
                         .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.OwnsOne("Vega.Models.Contact", "Contact", b1 =>
-                        {
-                            b1.Property<int>("VehicleId");
-
-                            b1.Property<string>("Email")
-                                .HasMaxLength(255);
-
-                            b1.Property<string>("Name")
-                                .IsRequired()
-                                .HasMaxLength(255);
-
-                            b1.Property<string>("Phone")
-                                .IsRequired()
-                                .HasMaxLength(255);
-
-                            b1.ToTable("Vehicles");
-
-                            b1.HasOne("Vega.Models.Vehicle")
-                                .WithOne("Contact")
-                                .HasForeignKey("Vega.Models.Contact", "VehicleId")
-                                .OnDelete(DeleteBehavior.Cascade);
-                        });
                 });
 
             modelBuilder.Entity("Vega.Models.VehicleFeature", b =>

@@ -11,9 +11,10 @@ using Vega.Persistence;
 namespace Vega.Migrations
 {
     [DbContext(typeof(VegaDbContext))]
-    partial class VegaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171220131921_ContactRefactoring")]
+    partial class ContactRefactoring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,14 +117,14 @@ namespace Vega.Migrations
                         {
                             b1.Property<int>("VehicleId");
 
-                            b1.Property<string>("Email")
+                            b1.Property<string>("ContactEmail")
                                 .HasMaxLength(255);
 
-                            b1.Property<string>("Name")
+                            b1.Property<string>("ContactName")
                                 .IsRequired()
                                 .HasMaxLength(255);
 
-                            b1.Property<string>("Phone")
+                            b1.Property<string>("ContactPhone")
                                 .IsRequired()
                                 .HasMaxLength(255);
 
