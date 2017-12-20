@@ -1,4 +1,3 @@
-import { MakeService } from './services/make.service';
 // Workaround for creating component via ng: ng g c moduleName --module='app.module.shared.ts', remove on the newer version v Angular/cli
 
 import { NgModule } from '@angular/core';
@@ -11,10 +10,11 @@ import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
+import { VehicleService } from './services/vehicle.service';
 
 @NgModule({
     providers: [
-        MakeService
+        VehicleService
     ],
     declarations: [
         AppComponent,
