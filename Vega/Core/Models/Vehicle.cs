@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Vega.Models
+namespace Vega.Core.Models
 {
     [Table("Vehicles")]
     public class Vehicle
