@@ -5,25 +5,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Vega.Controllers.Resources
 {
-    public class VehicleResource
+    public class SaveVehicleResource
     {
         public int Id { get; set; }
 
-        public KeyValuePairResource Model { get; set; }
-
-        public KeyValuePairResource Make { get; set; }
+        public int ModelId { get; set; }
 
         public bool IsRegistered { get; set; }
 
         public DateTime LastUpdate { get; set; }
 
+        [Required]
         public ContactResource Contact { get; set; }
 
-        public ICollection<KeyValuePairResource> Features { get; set; }
+        public ICollection<int> Features { get; set; }
 
-        public VehicleResource()
+        public SaveVehicleResource()
         {
-            Features = new Collection<KeyValuePairResource>();
+            Features = new Collection<int>();
         }
     }
 }
