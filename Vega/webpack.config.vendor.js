@@ -19,6 +19,8 @@ const nonTreeShakableModules = [
     'bootstrap/dist/css/bootstrap.css',
     'es6-promise',
     'es6-shim',
+    'ng2-toasty',
+    'ng2-toasty/bundles/style-bootstrap.css',
     'event-source-polyfill',
     'jquery',
 ];

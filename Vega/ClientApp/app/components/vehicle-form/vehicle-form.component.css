@@ -6,3 +6,8 @@ input[type='text'] {
     width: 350px;
 }
 
+.alert-danger {
+    width: 350px;
+    padding: 0.5em;
+}
+
