@@ -6,6 +6,7 @@ import { constructDependencies } from "@angular/core/src/di/reflective_provider"
 export class AppErrorHandler implements ErrorHandler {
     
     constructor(
+    @Inject(NgZone)
     private ngZone: NgZone,
     @Inject(ToastyService) 
     private toastyService: ToastyService) { }
