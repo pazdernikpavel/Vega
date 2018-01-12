@@ -35,6 +35,7 @@ import { AppErrorHandler } from './app.error-handler';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'vehicles/new', component: VehicleFormComponent },
+            { path: 'vehicles/:id', component: VehicleFormComponent },
             { path: 'home', component: HomeComponent },
             { path: '**', redirectTo: 'home' }
         ]
