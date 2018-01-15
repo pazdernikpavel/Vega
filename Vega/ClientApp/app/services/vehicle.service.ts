@@ -47,7 +47,7 @@ export class VehicleService {
   // Delete existing vehicle from the database
   deleteVehicle(id: number) {
     return this.http
-      .delete('/api/vehicles' + id)
+      .delete('/api/vehicles/' + id)
       .map(res => res.json());
   }
 
