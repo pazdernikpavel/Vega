@@ -93,6 +93,31 @@ export class VehicleFormComponent implements OnInit {
 
   // FORM METHODS
 
+
+  deleteVehicle() {
+
+    if (confirm("Are you sure?")) {
+
+      this.vehicleService
+        .deleteVehicle(this.vehicle.id)
+        .subscribe(v => {
+
+          this.router.navigate(['/home']);
+
+        });
+
+      this.toastyService.info({
+        title: 'Deleted',
+        msg: 'The vehicle was successfuly deleted!',
+        theme: 'bootstrap',
+        showClose: true,
+        timeout: 5000
+      });
+
+    }
+
+  }
+
   // if make is changed in the form, this method will be called
   onMakeChange() {
 
