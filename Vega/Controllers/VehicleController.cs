@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Vega.Controllers.Resources;
 using Vega.Core.Models;
 using Vega.Core;
+using System.Collections.Generic;
 
 namespace Vega.Controllers
 {
@@ -43,7 +44,7 @@ namespace Vega.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVehicle(int id,[FromBody] SaveVehicleResource saveVehicleResource)
+        public async Task<IActionResult> UpdateVehicle(int id, [FromBody] SaveVehicleResource saveVehicleResource)
         {
 
             if (!ModelState.IsValid)
@@ -91,5 +92,15 @@ namespace Vega.Controllers
 
             return Ok(vehicleResource);
         }
+
+        [HttpGet]
+        public async Task<IEnumerable<VehicleResource>> GetVehicles()
+        {
+
+            var vehicles = await _vehicleRepository.GetVehicles();
+            return _mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleResource>>(vehicles);
+
+        }
+
     }
 }

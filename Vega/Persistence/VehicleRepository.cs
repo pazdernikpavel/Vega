@@ -20,6 +20,7 @@ namespace Vega.Persistence
 
         public async Task<Vehicle> GetVehicle(int id, bool includeRelated = true)
         {
+            
             if (!includeRelated)
                 return await _context.Vehicles.SingleOrDefaultAsync(v => v.Id == id);
 
@@ -29,6 +30,18 @@ namespace Vega.Persistence
                     .Include(v => v.Model)
                     .ThenInclude(v => v.Make)
                     .SingleOrDefaultAsync(v => v.Id == id);
+
+        }
+
+        public async Task<IEnumerable<Vehicle>> GetVehicles() 
+        {
+
+            return await _context.Vehicles
+                .Include(v => v.Model)
+                    .ThenInclude(m => m.Make)
+                .Include(v => v.Features)
+                    .ThenInclude(vf => vf.Feature) 
+                .ToListAsync();   
 
         }
 
