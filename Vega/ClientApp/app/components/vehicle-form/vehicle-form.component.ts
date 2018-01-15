@@ -5,7 +5,9 @@ import { Console } from '@angular/core/src/console';
 import { VehicleService } from '../../services/vehicle.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { ToastyService } from 'ng2-toasty';
 import 'rxjs/add/Observable/forkJoin';
+
 
 @Component({
   selector: 'app-vehicle-form',
@@ -33,15 +35,16 @@ export class VehicleFormComponent implements OnInit {
 
   constructor(
 
+    private toastyService: ToastyService,
     private router: Router,
     private route: ActivatedRoute,
-    private vehicleService: VehicleService ) { 
+    private vehicleService: VehicleService) {
 
-      route.params.subscribe(p => {
-        this.vehicle.id = +p['id'];
-      });
+    route.params.subscribe(p => {
+      this.vehicle.id = +p['id'];
+    });
 
-    }
+  }
 
   ngOnInit() {
 
@@ -57,13 +60,15 @@ export class VehicleFormComponent implements OnInit {
       sources.push(this.vehicleService.getVehicle(this.vehicle.id));
 
     // sending parallel request to the server to obtain necessary data
-    Observable.forkJoin(sources).subscribe( data => {
+    Observable.forkJoin(sources).subscribe(data => {
 
       this.makes = data[0];
       this.features = data[1];
-      
-      if (this.vehicle.id)
+
+      if (this.vehicle.id) {
         this.setVehicle(data[2]);
+        this.populateModels();
+      }
 
     }, err => {
 
@@ -88,14 +93,23 @@ export class VehicleFormComponent implements OnInit {
 
   // FORM METHODS
 
+  // if make is changed in the form, this method will be called
   onMakeChange() {
 
-    var selectedMake = this.makes.find(m => m.id == this.vehicle.makeId)
-    this.models = selectedMake ? selectedMake.models : [];
+    this.populateModels();
     delete this.vehicle.modelId;
 
   }
 
+  // populate models upon choosing given make or by getting make id from the database
+  private populateModels() {
+
+    var selectedMake = this.makes.find(m => m.id == this.vehicle.makeId)
+    this.models = selectedMake ? selectedMake.models : [];
+
+  }
+
+  // adding/removing features from/to features array as user tick/untick checkboxes
   onFeatureToggle(featureId: any, $event: any) {
 
     if ($event.target.checked)
@@ -104,18 +118,45 @@ export class VehicleFormComponent implements OnInit {
       var index = this.vehicle.features.indexOf(featureId);
       this.vehicle.features.splice(index, 1);
 
-    } 
+    }
 
   }
 
+  // action called upon submitting vehicle-form
   submit() {
 
-    this.vehicleService
-      .createVehicle(this.vehicle)
-      .subscribe(
-        x => console.log(x)); 
+    if (this.vehicle.id) {
+
+      this.vehicleService
+        .updateVehicle(this.vehicle);
+
+      this.toastyService.success({
+        title: 'Updated',
+        msg: 'The vehicle was successfuly updated!',
+        theme: 'bootstrap',
+        showClose: true,
+        timeout: 5000
+      });
+
+
+    }
+    else {
+      this.vehicleService
+        .createVehicle(this.vehicle)
+        .subscribe(
+        x => console.log(x));
+
+      this.toastyService.success({
+        title: 'Created',
+        msg: 'The vehicle was successfuly created!',
+        theme: 'bootstrap',
+        showClose: true,
+        timeout: 5000
+      });
+
+    }
+
+    //this.router.navigate(['/home']);
 
   }
-
 }
- 
