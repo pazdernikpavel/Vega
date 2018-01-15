@@ -13,8 +13,6 @@ namespace Vega.Controllers.Resources
 
         public bool IsRegistered { get; set; }
 
-        public DateTime LastUpdate { get; set; }
-
         [Required]
         public ContactResource Contact { get; set; }
 

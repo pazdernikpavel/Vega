@@ -29,7 +29,8 @@ namespace Vega.Mapping
                 {
                     // removing unselected features sent via PUT method 
                     var removedFeatures = v.Features
-                        .Where(f => !vr.Features.Contains(f.FeatureId));
+                        .Where(f => !vr.Features.Contains(f.FeatureId))
+                        .ToList();
 
                     foreach (var f in removedFeatures)
                         v.Features.Remove(f);
@@ -37,7 +38,8 @@ namespace Vega.Mapping
                     // adding new features sent via PUT method 
                     var addedFeatures = vr.Features
                         .Where(id => !v.Features.Any(f => f.FeatureId == id))
-                        .Select(id => new VehicleFeature { FeatureId = id });
+                        .Select(id => new VehicleFeature { FeatureId = id })
+                        .ToList();
 
                     foreach (var f in addedFeatures)
                         v.Features.Add(f);

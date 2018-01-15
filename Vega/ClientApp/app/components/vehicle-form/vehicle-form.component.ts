@@ -153,15 +153,18 @@ export class VehicleFormComponent implements OnInit {
     if (this.vehicle.id) {
 
       this.vehicleService
-        .updateVehicle(this.vehicle);
+        .updateVehicle(this.vehicle)
+        .subscribe( x => { 
 
-      this.toastyService.success({
-        title: 'Updated',
-        msg: 'The vehicle was successfuly updated!',
-        theme: 'bootstrap',
-        showClose: true,
-        timeout: 5000
-      });
+          this.toastyService.success({
+            title: 'Updated',
+            msg: 'The vehicle was successfuly updated!',
+            theme: 'bootstrap',
+            showClose: true,
+            timeout: 5000
+            
+          });
+        })
 
 
     }
