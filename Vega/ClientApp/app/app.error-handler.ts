@@ -15,13 +15,14 @@ export class AppErrorHandler implements ErrorHandler {
 
         this.ngZone.run(() => {
 
-            this.toastyService.error({
+           /*  this.toastyService.error({
                 title: 'Error',
                 msg: 'Something unexpected happened.',
                 theme: 'bootstrap',
                 showClose: true,
                 timeout: 5000
-            });
+            }); */
+            // Comment workaround. Because of Ng2Toasty there were errors with loading pages with URL param routes, gotta fix this later.
 
         });
 }

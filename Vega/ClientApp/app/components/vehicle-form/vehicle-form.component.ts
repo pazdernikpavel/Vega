@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Console } from '@angular/core/src/console';
 import { VehicleService } from '../../services/vehicle.service';
-import {ToastyService} from 'ng2-toasty';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -22,8 +21,7 @@ export class VehicleFormComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private vehicleService: VehicleService,
-    private toastyService: ToastyService ) { 
+    private vehicleService: VehicleService ) { 
 
       route.params.subscribe(p => {
         this.vehicle.id = +p['id'];
