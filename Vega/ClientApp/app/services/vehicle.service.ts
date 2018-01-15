@@ -24,6 +24,9 @@ export class VehicleService {
 
   // Creating a new vehicle
   createVehicle(vehicle: any) {
+
+    vehicle.id = 0;
+
     return this.http
       .post('/api/vehicles', vehicle)
       .map(res => res.json());
