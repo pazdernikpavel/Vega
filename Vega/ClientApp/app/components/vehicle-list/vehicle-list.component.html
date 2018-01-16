@@ -6,6 +6,19 @@
 
 </p>
 
+<div class="well">
+<div class="form-group">
+  <label for="make">Make</label>
+  <select id="make" class="form-control" [(ngModel)]="filter.makeId" (change)="onFilterChange()">
+    <option value=""></option>
+    <option *ngFor="let m of makes" value="{{ m.id }}"> {{ m.name }}</option>
+  </select>
+</div>
+
+<button class="btn btn-default" (click)="filterReset()">Reset</button>
+
+</div>
+
 <table class="table">
     <thead>
       <tr>
@@ -23,7 +36,7 @@
         <td>{{ v.model.name }}</td>
         <td>{{ v.contact.name }}</td>
         <td>
-          <a [routerLink]="['/vehicles/', v.id]">View</a>
+          <a [routerLink]="['/vehicles/', v.id]">Edit</a>
         </td>
       </tr>
     </tbody>

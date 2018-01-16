@@ -7,13 +7,13 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
             </button>
-            <a class='navbar-brand' [routerLink]="['/home']">Vega</a>
+            <a class='navbar-brand' [routerLink]="['/vehicles']">Vega</a>
         </div>
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
-                
-                <li [routerLinkActive]="['link-active']">
+
+                <li [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact: true}">
                         <a [routerLink]="['/vehicles']">
                             <span class='glyphicon glyphicon-th-list'></span> Vehicle list
                         </a>
