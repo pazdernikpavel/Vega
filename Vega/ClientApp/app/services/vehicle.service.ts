@@ -39,6 +39,13 @@ export class VehicleService {
       .map(res => res.json());
   }
 
+  // Gets all vehicles from database
+  getVehicles() {
+    return this.http
+      .get('/api/vehicles')
+      .map(res => res.json());
+  }
+
   // Updates already existing vehicle
   updateVehicle(vehicle: SaveVehicle) {
     return this.http

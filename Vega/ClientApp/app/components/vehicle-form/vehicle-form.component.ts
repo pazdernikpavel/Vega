@@ -103,7 +103,7 @@ export class VehicleFormComponent implements OnInit {
         .deleteVehicle(this.vehicle.id)
         .subscribe(x => {
 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/vehicles']);
 
         });
 
@@ -185,7 +185,7 @@ export class VehicleFormComponent implements OnInit {
 
     }
 
-    //this.router.navigate(['/home']);
+    this.router.navigate(['/vehicles']);
 
   }
 }
