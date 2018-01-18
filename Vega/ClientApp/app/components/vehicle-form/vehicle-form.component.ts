@@ -24,6 +24,7 @@ export class VehicleFormComponent implements OnInit {
     id: 0,
     makeId: 0,
     modelId: 0,
+    ownerId: 0,
     isRegistered: false,
     features: [],
     contact: {
@@ -85,6 +86,7 @@ export class VehicleFormComponent implements OnInit {
     this.vehicle.id = v.id;
     this.vehicle.makeId = v.make.id;
     this.vehicle.modelId = v.model.id;
+    this.vehicle.ownerId = v.owner.id;
     this.vehicle.isRegistered = v.isRegistered;
     this.vehicle.contact = v.contact;
     this.vehicle.features = _.pluck(v.features, 'id');

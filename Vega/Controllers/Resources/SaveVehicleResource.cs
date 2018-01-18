@@ -11,6 +11,8 @@ namespace Vega.Controllers.Resources
 
         public int ModelId { get; set; }
 
+        public int OwnerId { get; set; }
+
         public bool IsRegistered { get; set; }
 
         [Required]

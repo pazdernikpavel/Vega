@@ -17,6 +17,10 @@ namespace Vega.Core.Models
 
         public Model Model { get; set; }
 
+        public int OwnerId { get; set; }
+
+        public Owner Owner { get; set; }
+
         public bool IsRegistered { get; set; }
 
         public DateTime LastUpdate { get; set; }

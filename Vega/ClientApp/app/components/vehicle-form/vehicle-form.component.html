@@ -24,6 +24,18 @@
     </select>
     <div class="alert alert-danger" *ngIf="model.touched && !model.valid">Please specify the model.</div>
   </div>
+
+
+  <div class="form-group">
+    <label for="owner">Owner</label>
+    <input id="owner"type="text" class="form-control"[(ngModel)]="vehicle.ownerId" name ="owner" required #owner="ngModel">
+    <div class="alert alert-danger" *ngIf="owner.touched && !owner.valid">Owner is required field.</div>
+  </div> 
+  <!-- Tady je třeba zadávat ID ownera manuálně, samozřejmě lze vytvořit API na volání ownerů a všech jejich attributů a tady do dropdown listu
+  zobrazit jména všech ownerů/vytvářet ownera nového pomocí reaktivního formuláře a na pozadí do pole ownerID přiřadit dané ID hodnoty, což
+  by bylo víc userfriendly samozřejmě a určitá nezbytnost -->
+
+
   <p>Is this vehicle registered?</p>
   <label for="registered" class="radio-inline">
     <input type="radio" name="isRegistered" id="registered" [value]="true" [(ngModel)]="vehicle.isRegistered"> Yes

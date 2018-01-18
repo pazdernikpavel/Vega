@@ -13,6 +13,8 @@ namespace Vega.Controllers.Resources
 
         public KeyValuePairResource Make { get; set; }
 
+        public KeyValuePairResource Owner { get; set; } 
+
         public bool IsRegistered { get; set; }
 
         public DateTime LastUpdate { get; set; }

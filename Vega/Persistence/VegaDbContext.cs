@@ -13,6 +13,7 @@ namespace Vega.Persistence
 
         public DbSet<Model> Models { get; set; }
 
+        public DbSet<Owner> Owners { get; set; }
 
         public VegaDbContext(DbContextOptions options)
             :base(options)

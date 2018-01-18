@@ -29,6 +29,7 @@ namespace Vega.Persistence
                     .ThenInclude(vf => vf.Feature)
                     .Include(v => v.Model)
                     .ThenInclude(v => v.Make)
+                    .Include(v => v.Owner)
                     .SingleOrDefaultAsync(v => v.Id == id);
 
         }
@@ -40,7 +41,8 @@ namespace Vega.Persistence
                 .Include(v => v.Model)
                     .ThenInclude(m => m.Make)
                 .Include(v => v.Features)
-                    .ThenInclude(vf => vf.Feature) 
+                    .ThenInclude(vf => vf.Feature)
+                .Include(v => v.Owner)
                 .ToListAsync();   
 
         }
